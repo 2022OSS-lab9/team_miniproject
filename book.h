@@ -7,7 +7,7 @@ typedef struct{
     char name[100]; //사용자 이름
     char seat[100]; //사용할 좌석
     int date[100]; //예약할 날짜
-    int time; // 예약 시간(사용시간)
+    int b_time; // 예약 시간(사용시간)
     int p_num; // 전화번호(4자리)
 } Book;
 
