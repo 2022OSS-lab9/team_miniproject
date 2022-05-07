@@ -96,10 +96,13 @@ int updateProduct(Book *b){
     return 1;
 };
 
-int deleteProduct(Book *b){
+int deleteBook(Book *b){
+    b->seat[0] = -1;
+    b->date[0] = -1;
     b->b_time[0] = -1;
     b->p_num[0] = -1;
-    printf("==> 예약이 취소되었습니다 :) \n");
+
+    printf("==> 삭제됨!\n");
     return 0;
 }
 
