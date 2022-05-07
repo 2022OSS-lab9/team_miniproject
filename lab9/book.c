@@ -108,7 +108,7 @@ int selectMenu(){
     int menu; 
     printf("\n** 유망스터디카페 **\n");
     printf("1. 예약조회\n");
-    printf("2. 새 예약\n");
+    printf("2. 예약\n");
     printf("3. 예약수정\n");
     printf("4. 예약삭제\n");
     printf("5. 파일저장\n");
@@ -119,5 +119,79 @@ int selectMenu(){
     return menu;
 }
 
- 
+void listBook(Book *s,int count){
+    
+    printf("\n유망 스터디카페 예약 내용\n");
+    printf("================================\n");
+    for(int i = 0; i < count; i++){
+        if(s[i].b_time == -1) continue;
+        if(strstr(s[i].name, search)){
+            printf("%2d ", i + 1);
+            readBook(b[i]);
+            count++;
+        }
+
+}
+
+
+int selectDataNo(Book *s, int count){
+    int no;
+    listProduct(s, count);
+    printf("번호는 (취소:0)?");
+    scanf("%d",&no);
+    getchar();
+    return no;
+}
+
+void searchName(Book *s, int count){
+    char search[20];
+
+    printf("검색할 이름? ");
+    scanf("%s", search);
+
+    printf("\n유망 스터디카페 예약 내용\n");
+    printf("================================\n");
+    for(int i = 0; i < count; i++){
+        if(s[i].s_time == -1) continue;
+        if(strstr(s[i].name, search)){
+            printf("%2d ", i + 1);
+            readBook(s[i]);
+            count++;
+        }
+    }
+    if(count == 0) printf("=> 예약된 내용이 없습니다 :)");
+    printf("\n");
+}
+
+void saveData(Product *s, int count){
+    FILE *fp;
+
+    fp = fopen("product.txt", "wt");
+    for(int i = 0; i< count; i++){
+        if(s[i].price == -1) continue;
+        fprintf(fp, "%s %3d %d %d %d", s[i].name, s[i].seat, s[i].date, s[i].b_time, s[i].p_num);
+    }
+    fclose(fp);
+    printf("==> 저장됨 \n");
+}
+
+int  loadData(Product*s){
+    FILE *fp;
+
+    fp = fopen("book.txt", "rt");
+    if(fp == NULL){
+        printf("==> 파일이 없음\n");
+        return 0;
+    }
+
+    int count = 0;
+    for(;;count++){
+        fscanf(fp, "%s %3d %d %d %d", s[count].name, s[count].seat, s[count].date, s[count].b_time, s[count].p_num);
+        if(feof(fp)) break;
+    }
+    fclose(fp);
+    printf("==> 로딩성공!!\n");
+    return count;
+}
+
 
