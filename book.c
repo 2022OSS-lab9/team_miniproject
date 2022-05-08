@@ -32,7 +32,7 @@ void readBook(Book s){
 
 }
 
-int updateProduct(Book *b){
+int updateBook(Book *b){
 
     printf("\n");
     printf("이름이 무엇입니까? ");
@@ -122,7 +122,7 @@ void searchName(Book *s, int count){
             count++;
         }
     }
-    if(count == 0) printf("=> 예약된 내용 없습니다");
+    if(scount == 0) printf("=> 예약된 내용 없습니다");
     printf("\n");
 
 }
@@ -133,7 +133,7 @@ void saveData(Book *s, int count){
     fp = fopen("Book.txt", "wt");
     for(int i = 0; i< count; i++){
         if(s[i].seat == -1) continue;
-        fprintf("%s %3d %d %d %d", s[i].name, s[i].seat, s[i].date, s[i].b_time, s[i].p_num);
+        fprintf(fp,"%s %3d %d %d %d\n", s[i].name, s[i].seat, s[i].date, s[i].b_time, s[i].p_num);
     }
     fclose(fp);
     printf("==> 저장됨 \n");
@@ -150,7 +150,7 @@ int loadData(Book *s){
 
     int count = 0;
     for(;;count++){
-        fscanf("%s %3d %d %d %d", s[count].name, s[count].seat, s[count].date, s[count].b_time, s[count].p_num);
+        fscanf(fp,"%s %3d %d %d %d", s[count].name, &s[count].seat, &s[count].date, &s[count].b_time, &s[count].p_num);
         if(feof(fp)) break;
     }
     fclose(fp);
