@@ -5,10 +5,10 @@
 
 typedef struct{
     char name[100]; //사용자 이름
-    int seat[25]; //사용할 좌석
-    int date[4]; //예약할 날짜
-    int b_time[4]; // 예약 시간(사용시간)
-    int p_num[4]; // 전화번호(4자리)
+    int seat; //사용할 좌석
+    int date; //예약할 날짜
+    int b_time; // 예약 시간(사용시간)
+    int p_num; // 전화번호(4자리)
 } Book;
 
 int newBook(Book *s);
