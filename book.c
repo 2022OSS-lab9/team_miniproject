@@ -144,10 +144,11 @@ void searchName(Book *s, int count){
         if(strstr(s[i].name, search)){
             printf("%2d ", i + 1);
             readBook(s[i]);
-            count++;
+            scount++;
         }
     }
-    if(scount == 0) printf("=> 예약된 내용 없습니다");
+    
+    if(scount == 0) printf("==> 검색결과 없음 !!");
     printf("\n");
 
 }
@@ -182,9 +183,3 @@ int loadData(Book *s){
     printf("==> 로딩성공!!\n");
     return count;
 }
-
-
-
-
- 
-
