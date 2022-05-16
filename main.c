@@ -57,6 +57,12 @@ int main(void){
             if(count == 0)
                 printf("=> 데이터 없음!\n");
             else 
+                loadData(slist);
+        }
+        else if (menu == 7){
+            if(count == 0)
+                printf("=> 데이터 없음!\n");
+            else 
                 searchName(slist, curcount);
         }
     }
