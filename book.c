@@ -1,23 +1,50 @@
 #include "book.h"
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
 int newBook(Book *s){
-
+    char c[10];
     printf("이름이 무엇입니까? ");
     getchar();
     scanf("%[^\n]s", s->name);
 
-    printf("원하는 좌석은 어디입니까? ");
-    scanf("%d", &s->seat);
+    do{
+        printf("원하는 좌석은 어디입니까? (좌석은 1~25까지입니다.)");
+        scanf("%d", &s->seat);
+        if(s->seat <= 25){
+            break;
+        }
+        printf("잘못된 형식입니다. 다시 입력해주세요.\n");
+    }while(s->seat > 25);
 
-    printf("원하는 날짜는 언제입니까? (ex. 5월 6일 -> 0506) ");
-    scanf("%d", &s->date);
+    do{
+        printf("원하는 날짜는 언제입니까? (ex. 5월 6일 -> 506/ 12월 12일 -> 1212) ");
+        scanf("%d", &s->date);
+        sprintf(c, "%d", s->date);
+        if(strlen(c) == 3 || strlen(c )== 4)
+            break;
+        printf("잘못된 형식입니다. 다시 입력해주세요.\n");
+    }while(strlen(c) != 4);
 
-    printf("원하는 시간는 언제입니까? (ex. 오후 1시 13분 -> 1313) ");
-    scanf("%d", &s->b_time);
+    do{
+        printf("원하는 시간는 언제입니까? (ex. 오후 1시 13분 -> 1313) ");
+        scanf("%d", &s->b_time);
+        sprintf(c, "%d", s->b_time);
+        if(strlen(c) == 4)
+            break;
+        printf("잘못된 형식입니다. 다시 입력해주세요.\n");
+    }while(strlen(c) != 4);
 
-    printf("휴대폰 번호 뒷자리는 무엇입니까? ");
-    scanf("%d", &s->p_num);
-
+    do{
+        printf("휴대폰 번호 뒷자리는 무엇입니까? ");
+        scanf("%d", &s->p_num);
+        sprintf(c, "%d", s->p_num);
+        if(strlen(c) == 4)
+            break;
+        printf("잘못된 형식입니다. 다시 입력해주세요.\n");
+    }while(strlen(c) != 4);
+ 
     printf("=> 예약되었습니다 :)\n");
 
     return 1;
@@ -28,7 +55,7 @@ void readBook(Book s){
     
     if(s.seat == -1) return;
      
-    printf("%s %3d %3d %3d %3d", s.name, s.seat, s.date, s.b_time, s.p_num);
+    printf("%s %3d %3d %3d %3d\n", s.name, s.seat, s.date, s.b_time, s.p_num);
 
 }
 
