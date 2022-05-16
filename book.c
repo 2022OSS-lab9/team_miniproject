@@ -31,7 +31,7 @@ int newBook(Book *s){
         printf("원하는 시간는 언제입니까? (ex. 오후 1시 13분 -> 1313) ");
         scanf("%d", &s->b_time);
         sprintf(c, "%d", s->b_time);
-        if(strlen(c) == 4)
+        if(strlen(c) == 3 || strlen(c )== 4)
             break;
         printf("잘못된 형식입니다. 다시 입력해주세요.\n");
     }while(strlen(c) != 4);
@@ -40,29 +40,26 @@ int newBook(Book *s){
         printf("휴대폰 번호 뒷자리는 무엇입니까? ");
         scanf("%d", &s->p_num);
         sprintf(c, "%d", s->p_num);
-        if(strlen(c) == 4)
+        if(strlen(c) == 3 || strlen(c )== 4)
             break;
         printf("잘못된 형식입니다. 다시 입력해주세요.\n");
     }while(strlen(c) != 4);
  
     printf("=> 예약되었습니다 :)\n");
-
     return 1;
 }
 
 
 void readBook(Book s){
-    
     if(s.seat == -1) return;
-     
     printf("%s %3d %3d %3d %3d\n", s.name, s.seat, s.date, s.b_time, s.p_num);
-
 }
 
 int updateBook(Book *b){
 
     printf("\n");
     printf("이름이 무엇입니까? ");
+    getchar();
     scanf("%[^\n]s",b->name);
 
     printf("원하는 좌석은 어디입니까? ");
@@ -102,7 +99,8 @@ int selectMenu(){
     printf("3. 예약수정\n");
     printf("4. 예약삭제\n");
     printf("5. 파일저장\n");
-    printf("6. 예약확인\n");
+    printf("6. 파일확인\n");
+    printf("7. 예약확인\n");
     printf("0. 종료\n\n");
     printf("=> 원하는 메뉴는? ");
     scanf("%d", &menu);
